@@ -1,0 +1,6 @@
+*********** Account statement for account 12123234 ************
+
+Transaction_id	Transaction_type	Amount
+1	Withdrawal	123124
+2	Deposit	100000
+3	Deposit	30000
