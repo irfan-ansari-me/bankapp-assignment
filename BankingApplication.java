@@ -23,21 +23,26 @@ public class BankingApplication {
                         "Enter your choice: "
             );
             choice = input.nextLine();
-            System.out.println("Your choice " + choice);
             switch (choice) {
                 case "1":
-                    System.out.println("Enter amount to deposit");
-                    amount = input.nextInt();
-                    bankAccount.deposit(amount);    
+                    try {
+                        System.out.println("Enter amount to deposit");
+                        amount = Integer.parseInt(input.nextLine());
+                        bankAccount.deposit(amount); 
+                    } catch (NumberFormatException e) {
+                        System.out.println("Amount should be a number!");
+                    }
                     break;
             
                 case "2":
-                    System.out.println("Enter amount to withdraw");
-                    amount = input.nextInt();
                     try {
+                        System.out.println("Enter amount to withdraw");
+                        amount = Integer.parseInt(input.nextLine());
                         bankAccount.withdraw(amount);
                     } catch (LowBalanceException lowbalance) {
                         System.out.println(lowbalance.getMessage());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Amount should be a number!");
                     }
                     break;
     
@@ -61,7 +66,7 @@ public class BankingApplication {
                     break;
     
                 default:
-                    if (choice == "0") return;
+                    if (choice.equals("0")) return;
                     System.out.println("Wrong choice!");
                     break;
             }  
