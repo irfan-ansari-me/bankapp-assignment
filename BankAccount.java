@@ -17,7 +17,11 @@ public class BankAccount {
         System.out.println("Rs. " + amount + " added successfully! " + "Current balance is Rs. " + this.balance);
     }
 
-    public void withdraw(int amount) {
+    public void withdraw(int amount) throws LowBalanceException {
+        if (amount > this.balance) {
+            throw new LowBalanceException("Cannot withdraw due to low balance! " +
+                        "Your current balance is " + this.balance);
+        }
         this.balance -= amount;
         this.accountStatement.recordTransaction("Withdrawal", amount);
         System.out.println("Rs. " + amount + " withdrawn from your account " + this.accountNumber + ". Current balance is Rs. " + this.balance);

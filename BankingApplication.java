@@ -23,6 +23,7 @@ public class BankingApplication {
                         "Enter your choice: "
             );
             choice = input.nextLine();
+            System.out.println("Your choice " + choice);
             switch (choice) {
                 case "1":
                     System.out.println("Enter amount to deposit");
@@ -33,7 +34,11 @@ public class BankingApplication {
                 case "2":
                     System.out.println("Enter amount to withdraw");
                     amount = input.nextInt();
-                    bankAccount.withdraw(amount);
+                    try {
+                        bankAccount.withdraw(amount);
+                    } catch (LowBalanceException lowbalance) {
+                        System.out.println(lowbalance.getMessage());
+                    }
                     break;
     
                 case "3":
